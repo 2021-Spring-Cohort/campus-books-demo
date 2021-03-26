@@ -41,11 +41,23 @@ const displaySingleCampus = function (campus) {
     });
   });
 
-  backToAllCampuses.addEventListener("click", (clickEvent) => {
-    clearChildren(mainContent);
-    mainContent.appendChild(displayHomeView(allCampusJson));
-  });
+  // backToAllCampuses.addEventListener("click", (clickEvent) => {
+  //   clearChildren(mainContent);
+  //   mainContent.appendChild(displayHomeView(allCampusJson));
+  // });
+
+  backToAllCampuses.addEventListener('click',()=>{
+      clearChildren(mainContent);
+      fetch('http://localhost:8080/api/campuses')
+        .then(response => response.json())
+        .then(campuses => displayHomeView(campuses))
+        .then(campusesElement => mainContent.appendChild(campusesElement))
+        .catch(error => console.log(error));
+  })
+
 };
+
+
 
 const clearChildren = function (element) {
   while (element.firstChild) {

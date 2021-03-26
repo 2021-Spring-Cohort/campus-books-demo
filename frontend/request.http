@@ -1,0 +1,26 @@
+### Get all campuses
+GET http://localhost:8080/api/campuses
+
+### Get Specific Campus
+GET localhost:8080/api/campuses/1
+
+### Deletes a specific campus
+DELETE localhost:8080/api/campuses/1
+
+### Add a new campus
+POST http://localhost:8080/api/campuses
+Content-Type: application/json
+
+{"location": "Flordia", "techStack": "Python"}
+
+### Update's a campus values
+PUT localhost:8080/api/campuses
+Content-Type: application/json
+
+{"id":"1", "location":"Florida", "techStack":"C#"}
+
+### Updates specific element of our JSON
+PATCH localhost:8080/api/campuses/1/location
+
+Utah
+
