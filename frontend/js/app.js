@@ -12,7 +12,21 @@ import {
 import {
     displayHomeView
 } from "/js/displayHomeView.js"
+const container = document.querySelector(".container");
+container.append(createHeader());
 
-document.querySelector(".container").append(createHeader());
-document.querySelector(".container").append(displayHomeView(allCampusJson))
-document.querySelector(".container").append(createFooter());
+const mainElement = document.createElement("main");
+mainElement.classList.add("main-content");
+container.appendChild(mainElement);
+
+//container.append(displayHomeView(allCampusJson))
+fetch("http://localhost:8080/api/campuses")
+    .then(response => response.json())
+    .then(campuses => displayHomeView(campuses))
+    .then(campusesElement => mainElement.appendChild(campusesElement))
+    .catch(error => console.log(error));
+
+
+
+
+container.append(createFooter());

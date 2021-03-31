@@ -24,3 +24,12 @@ PATCH localhost:8080/api/campuses/1/location
 
 Utah
 
+
+### Add book to campus
+PATCH localhost:8080/api/campuses/1/books
+Content-Type: application/json
+
+{
+      "title": "Design Patterns Modern Best Practices",
+      "summary": "This is a great Book"
+}

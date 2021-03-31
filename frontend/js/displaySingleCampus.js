@@ -39,8 +39,34 @@ const displaySingleCampus = function (campus) {
     bookTitle.addEventListener("click", () => {
       alert(`This book's summary is: ${book.summary}`);
     });
-  });
+    
 
+  });
+  const newBookform = document.createElement("form");
+    newBookform.innerHTML = `
+      <input class="title-input" placeholder="Title" type="text">
+      <input class="summary-input" placeholder="Summary" type="text">
+      <button class="submit-new-book">Submit New Book</button>
+      `
+      newBookform.querySelector(".submit-new-book").addEventListener("click", (clickEvent)=>{
+        clickEvent.preventDefault();
+        clearChildren(mainContent);
+        const bookJson = {
+            "title": newBookform.querySelector(".title-input").value,
+            "summary": newBookform.querySelector(".summary-input").value
+        }
+        fetch("http://localhost:8080/api/campuses/"+ campus.id + "/books",{
+            method: 'PATCH',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookJson)
+            })
+            .then(response => response.json())
+            .then(campus => displaySingleCampus(campus))
+            .catch(error => console.log(error))
+      })
+      campusLibraryElement.appendChild(newBookform);
   // backToAllCampuses.addEventListener("click", (clickEvent) => {
   //   clearChildren(mainContent);
   //   mainContent.appendChild(displayHomeView(allCampusJson));
