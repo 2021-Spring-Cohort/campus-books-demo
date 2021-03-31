@@ -24,8 +24,9 @@ public class CampusController {
     }
 
     @DeleteMapping("/api/campuses/{id}")
-    public void deleteCampusById(@PathVariable Long id){
+    public Iterable<Campus> deleteCampusById(@PathVariable Long id){
         campusStorage.deleteCampusById(id);
+        return campusStorage.retrieveAllCampuses();
     }
 
     @PostMapping("/api/campuses")

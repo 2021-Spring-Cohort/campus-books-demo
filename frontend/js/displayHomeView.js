@@ -1,4 +1,5 @@
 import {displaySingleCampus} from "./displaySingleCampus.js";
+import {deleteCampus} from "./deleteCampus.js";
 
 const displayHomeView = function (campuses) {
   const mainElement = document.createElement("main");
@@ -21,12 +22,19 @@ const displayHomeView = function (campuses) {
     let campusTechStackElement = document.createElement("h3");
     campusTechStackElement.classList.add("campus-tech-stack");
     campusTechStackElement.innerText = campus.techStack;
+    let deleteButton = document.createElement("button");
+    deleteButton.innerText = `Delete ${campus.location}`;
+    deleteButton.addEventListener("click", () => deleteCampus(campus))
+
     campusElement.appendChild(campusLocationElement);
     campusElement.appendChild(campusTechStackElement);
+    campusElement.appendChild(deleteButton);
     sectionElement.appendChild(campusElement);
   });
   return mainElement;
 };
+
+
 
 export { displayHomeView };
 

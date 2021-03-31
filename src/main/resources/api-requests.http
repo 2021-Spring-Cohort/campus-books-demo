@@ -5,7 +5,7 @@ GET localhost:8080/api/campuses
 GET localhost:8080/api/campuses/1
 
 ### Deletes a specific campus
-DELETE localhost:8080/api/campuses/1
+DELETE http://localhost:8080/api/campuses/1
 
 ### Add a new campus
 POST localhost:8080/api/campuses

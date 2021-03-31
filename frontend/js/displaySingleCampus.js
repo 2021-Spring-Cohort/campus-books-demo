@@ -63,9 +63,9 @@ const clearChildren = function (element) {
   while (element.firstChild) {
     element.removeChild(element.lastChild);
   }
-};
+}
 
-export { displaySingleCampus };
+export { displaySingleCampus, clearChildren };
 
 //   <main class="main-content">
 //   <section class="campus-library">
